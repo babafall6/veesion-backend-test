@@ -1,0 +1,4 @@
+nose
+pyjson
+requests
+pyuca
