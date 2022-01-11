@@ -2,7 +2,7 @@ import os
 import sys
 import unittest
 import json
-from tveesion import bookstore_solution as bookstore
+from tveesion import bookstore
 
 sys.path.append(os.path.abspath(os.path.dirname(__file__)))
 from mocks_requests import MockRequests
