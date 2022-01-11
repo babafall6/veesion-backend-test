@@ -21,7 +21,7 @@ class TestBookStore(unittest.TestCase):
 
 
     def test_author_books(self):
-        """ Implement the method sell in BookStore
+        """ Implement the method author in BookStore
         to make the test pass.
         """
         store = bookstore.BookStore()
@@ -32,8 +32,7 @@ class TestBookStore(unittest.TestCase):
 
 
     def test_search(self):
-        """ Implement the method sell in BookStore
-        to make the test pass.
+        """ Implement the method sell in BookStore to make the test pass.
         """
         store = bookstore.BookStore()
 
@@ -42,8 +41,7 @@ class TestBookStore(unittest.TestCase):
         self.assertEquals(expected, books)
 
     def test_addbook(self):
-        """ Implement the method addbook in BookStore
-        to make the test pass.
+        """ Implement the method addbook in BookStore to make the test pass.
         """
         store = bookstore.BookStore()
 
@@ -66,6 +64,8 @@ class TestBookStore(unittest.TestCase):
             self.assertEquals(n, 11)
 
     def test_sell(self):
+        """ Implement the method addbook in BookStore to make the test pass.
+        """
         store = bookstore.BookStore()
 
         expected = [("1984", 3)]
@@ -110,16 +110,20 @@ class TestBookStore(unittest.TestCase):
 
     def test_matching_title(self):
         """The librarian want to add to the class some utility function that will be able to tell if two book titles are the same
-        
+
         the rules defining if two book titles are the same are in the method doctstring.
-        
+
         You are expected to write both the code and the tests to ensure it's passing
-        
-        HINTS: read docstrings, read requirements
+
+        behave as if it were an actual demand from real life, not a mere exercise
+
+        HINTS: read docstrings, read requirements,
+        - think before coding,
+        - helper functions are allowed
 
         """
 
         store = bookstore.BookStore()
 
-        self.assertTrue(store.title_match("Le vieil home et la mer", "Le vieil home et la Mer"))
+        self.assertTrue(store.title_match("Le vieil homme et la mer", "Le vieil homme et la Mer"))
 
