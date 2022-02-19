@@ -22,7 +22,8 @@ class BookStore:
         Return the list of books from this author in inventory
         as a list of couples (title, number)
         """
-        raise NotImplementedError()
+        return self.inventory.get(name, [])
+        # raise NotImplementedError()
 
     def search(self, partialtitle):
         """
@@ -30,7 +31,13 @@ class BookStore:
         for all books matchin title returns how many books
         we have in stock and the full title.
         """
-        raise NotImplementedError()
+        matched_search = []
+        for author in self.authors():
+            for title, number in self.author(author):
+                if partialtitle.lower() in title.lower():
+                    matched_search.append((title, number))
+        return matched_search
+        # raise NotImplementedError()
 
     def sell(self, author, title):
         """
