@@ -74,7 +74,7 @@ class BookStore:
                 # We break the lookup to optimize
                 break
         else:
-            # In this case of the author doesn't exist or the book is never stored for the author
+            # In case of the author doesn't exist or the book is never stored for the author
             if author in self.authors():
                 # The author exists
                 self.inventory[author].append((title, number))
