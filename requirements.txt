@@ -1,4 +1,9 @@
-nose
-pyjson
-requests
-pyuca
+certifi==2021.10.8
+charset-normalizer==2.0.12
+idna==3.3
+nose==1.3.7
+pyjson==1.3.0
+pyuca==1.2
+requests==2.27.1
+Unidecode==1.3.3
+urllib3==1.26.8
