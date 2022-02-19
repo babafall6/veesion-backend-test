@@ -14,7 +14,8 @@ class BookStore:
 
     def authors(self):
         """Return the list of authors"""
-        raise NotImplementedError()
+        return self.inventory.keys()
+        # raise NotImplementedError()
 
     def author(self, name):
         """
