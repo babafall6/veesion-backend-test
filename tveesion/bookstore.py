@@ -43,11 +43,45 @@ class BookStore:
         """
         Remove one book from inventory
         """
-        raise NotImplementedError()
+        for i, book in enumerate(self.author(author)):
+            _title, _number = book
+            if _title == title:
+                _number -= 1
+                # Remove current item form list of book beacause of tuple.
+                # We may add again the item if only if the amount is
+                # greater than 0
+                del self.inventory[author][i]
+                if _number > 0:
+                    self.inventory[author].append((title, _number))
+                # We break to optimize
+                break
+        else:
+            # We raise if there is no book to remove
+            raise LookupError("book %s by %s not found" % (title, author))
+        # raise NotImplementedError()
 
     def addbook(self, author, title, number=1):
         """Add one or several identical books to inventory"""
-        raise NotImplementedError()
+        for i, book in enumerate(self.author(author)):
+            _title, _number = book
+            if _title == title:
+                # The book already exist, we add only the amount
+                _number += number
+                # We may update the book tuple
+                _book = (title, _number)
+                del self.inventory[author][i]
+                self.inventory[author].append(_book)
+                # We break the lookup to optimize
+                break
+        else:
+            # In this case of the author doesn't exist or the book is never stored for the author
+            if author in self.authors():
+                # The author exists
+                self.inventory[author].append((title, number))
+            else:
+                # It a new author
+                self.inventory[author] = [(title, number)]
+        # raise NotImplementedError()
 
     @staticmethod
     def titlematch(title1, title2):
