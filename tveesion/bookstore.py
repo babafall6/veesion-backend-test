@@ -1,3 +1,8 @@
+# coding: utf-8
+import re
+from unidecode import unidecode
+import string
+
 class BookStore:
     def __init__(self):
         """Inventory data is stored in a dictionnary where each key is an author name
@@ -84,7 +89,7 @@ class BookStore:
         # raise NotImplementedError()
 
     @staticmethod
-    def titlematch(title1, title2):
+    def title_match(title1, title2):
         """This function should return true if title1 and title2 are identical
         with the below allowances:
         - case is ignored
@@ -98,5 +103,29 @@ class BookStore:
         - the first word of the string can also be appended to the end of the string after a coma
         (ie: "Le Vieil Homme et la mer" is considered to be the same as "Vieil Homme et la Mer, Le")
         """
-        raise NotImplementedError()
+        # Case ignored
+        _title1 = title1.lower()
+        _title2 = title2.lower()
+        # multiple spaces as single
+        _title1 = re.sub(r"\s+", " ", _title1)
+        _title2 = re.sub(r"\s+", " ", _title2)
+        # ponctuation is non significant
+        _title1_without_punt_list = [x for x in _title1 if x not in string.punctuation]
+        _title1 = "".join(_title1_without_punt_list)
+        # ****
+        _title2_without_punt_list = [x for x in _title2 if x not in string.punctuation]
+        _title2 = "".join(_title2_without_punt_list)
+        # remove accentuated characters
+        _title1 = unidecode(_title1)
+        _title2 = unidecode(_title2)
+
+        # the first word of the string appended to the end after coma.
+        _title1_list = " ".split(_title1)
+        _title1_ewfwc = " ".join(_title1_list[1:]+[","]+_title1_list[0:1])
+        # ****
+        _title2_list = " ".split(_title2)
+        _title2_ewfwc = " ".join(_title2_list[1:]+[","]+_title2_list[0:1])
+
+        return _title1 == _title2 or _title1_ewfwc == _title2 or _title1 == _title2_ewfwc
+        # raise NotImplementedError()
 

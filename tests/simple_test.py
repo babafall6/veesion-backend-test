@@ -103,7 +103,7 @@ class TestBookStore(unittest.TestCase):
         expected = ["Flaubert", "Proust", "Orwell"]
 
         # Use the json library to create the expected list from request answer
-        answer = expected # You should replace expected by the right python code
+        answer = json.loads(res.text) # You should replace expected by the right python code
 
         self.assertEquals(expected, answer)
 
@@ -123,7 +123,7 @@ class TestBookStore(unittest.TestCase):
 
         """
 
-        store = bookstore.BookStore()
-
-        self.assertTrue(store.title_match("Le vieil homme et la mer", "Le vieil homme et la Mer"))
+        # store = bookstore.BookStore()
+        # We don't need instance of class to use its staticmethod
+        self.assertTrue(bookstore.BookStore.title_match("Le vieil homme et la mer", "Le vieil homme et la Mer"))
 
